@@ -1,6 +1,6 @@
 import { useState } from 'react'
 
-function TweetCard({ username, handle, time, text, likes, comments, reposts }) {
+function TweetCard({ username, handle, time, text, likes, comments, reposts, onDelete }) {
   const [likeCount, setLikeCount] = useState(likes)
   const [isLiked, setIsLiked] = useState(false)
 
@@ -26,6 +26,9 @@ function TweetCard({ username, handle, time, text, likes, comments, reposts }) {
         <span onClick={handleLike} style={{ cursor: "pointer" }}>
           {isLiked ? "❤️" : "🤍"} {likeCount}
         </span>
+        <button onClick={onDelete} style={{ float: "right", cursor: "pointer" }}>
+  🗑️
+</button>
       </div>
     </div>
   )
