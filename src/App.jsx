@@ -66,11 +66,14 @@ function App() {
         <div className="avatar">G</div>
         <div className="tweet-input">
           <textarea
+          maxLength={280}
             rows={3}
             placeholder="What is happening?!"
             value={newTweet}
-            onChange={(e) => setNewTweet(e.target.value)}
-          />
+            onChange={(e) => setNewTweet(e.target.value)}/>
+            <div style={{ textAlign: "right", color: 280 - newTweet.length < 20 ? "red" : "#536471", fontSize: "14px" }}>
+  {280 - newTweet.length}
+</div>
           <button className="post-button" onClick={handlePost}>Post</button>
         </div>
       </div>
