@@ -15,20 +15,28 @@ function TweetCard({ username, handle, time, text, likes, comments, reposts, onD
   }
 
   return (
-    <div style={{ border: "1px solid #333", padding: "16px", marginBottom: "8px" }}>
-      <div>
-        <strong>{username}</strong> {handle} · {time}
+    <div className="tweet-card">
+      <div className="avatar">
+        {username[0]}
       </div>
-      <p>{text}</p>
-      <div>
-        💬 {comments} &nbsp;
-        🔁 {reposts} &nbsp;
-        <span onClick={handleLike} style={{ cursor: "pointer" }}>
-          {isLiked ? "❤️" : "🤍"} {likeCount}
-        </span>
-        <button onClick={onDelete} style={{ float: "right", cursor: "pointer" }}>
-  🗑️
-</button>
+      <div className="tweet-content">
+        <div className="tweet-header">
+          <span className="tweet-username">{username}</span>
+          <span className="tweet-handle">{handle}</span>
+          <span className="tweet-handle">· {time}</span>
+          <button className="delete-btn" onClick={onDelete}>🗑️</button>
+        </div>
+        <p className="tweet-text">{text}</p>
+        <div className="tweet-actions">
+          <button className="action-btn">💬 {comments}</button>
+          <button className="action-btn">🔁 {reposts}</button>
+          <button
+            className={`action-btn like-btn ${isLiked ? 'liked' : ''}`}
+            onClick={handleLike}
+          >
+            {isLiked ? "❤️" : "🤍"} {likeCount}
+          </button>
+        </div>
       </div>
     </div>
   )

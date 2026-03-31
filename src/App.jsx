@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import TweetCard from './components/TweetCard'
+import './index.css'
 
 const initialTweets = [
   {
@@ -38,10 +39,6 @@ function App() {
   const [tweets, setTweets] = useState(initialTweets)
   const [newTweet, setNewTweet] = useState("")
 
-  const handleDelete = (id) => {
-  setTweets(tweets.filter(tweet => tweet.id !== id))
-}
-
   const handlePost = () => {
     if (newTweet.trim() === "") return
     const tweet = {
@@ -58,18 +55,24 @@ function App() {
     setNewTweet("")
   }
 
+  const handleDelete = (id) => {
+    setTweets(tweets.filter(tweet => tweet.id !== id))
+  }
+
   return (
-    <div style={{ maxWidth: "600px", margin: "0 auto", padding: "20px" }}>
-      <h2>Home</h2>
-      <div style={{ marginBottom: "20px" }}>
-        <textarea
-          rows={3}
-          placeholder="What is happening?!"
-          value={newTweet}
-          onChange={(e) => setNewTweet(e.target.value)}
-          style={{ width: "100%", padding: "10px", fontSize: "16px" }}
-        />
-        <button onClick={handlePost}>Post</button>
+    <div className="container">
+      <div className="header">Home</div>
+      <div className="tweet-input-container">
+        <div className="avatar">G</div>
+        <div className="tweet-input">
+          <textarea
+            rows={3}
+            placeholder="What is happening?!"
+            value={newTweet}
+            onChange={(e) => setNewTweet(e.target.value)}
+          />
+          <button className="post-button" onClick={handlePost}>Post</button>
+        </div>
       </div>
       {tweets.map(tweet => (
         <TweetCard
